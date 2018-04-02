@@ -53,11 +53,18 @@ class Player2():
                         ReStart()
        
         def movement(self):
-                keys = pygame.key.get_pressed()
-                if keys[pygame.K_UP]:
+                
+                if (self.y>ball.y):
                         self.moveUp()
-                elif keys[pygame.K_DOWN]:
+                elif (self.y<ball.y):
                         self.moveDown()
+                        
+                buf = self.y - ball.y
+                
+                if(buf<=10):
+                        self.y += int((random.random()-0.5)*50)
+                if(buf>=-10):
+                        self.y += int((random.random()-0.5)*50)
        
                 if self.y <= 0:
                         self.y = 0
