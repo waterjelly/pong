@@ -88,17 +88,19 @@ class Ball():
                 #paddle col
                 #player
                 for n in range(-self.size, player.padHei):
-                        if self.y == player.y + n:
-                                if self.x <= player.x + player.padWid:
-                                        self.speed_x *= -1
-                                        break
+                        if 0 > self.speed_x:
+                                if self.y == player.y + n:
+                                        if self.x <= player.x + player.padWid:
+                                                self.speed_x *= -1
+                                                break
                         n += 1
                 #player2
                 for n in range(-self.size, player2.padHei):
-                        if self.y == player2.y + n:
-                                if self.x >= player2.x - player2.padWid:
-                                        self.speed_x *= -1
-                                        break
+                        if 0 < self.speed_x:
+                                if self.y == player2.y + n:
+                                        if self.x >= player2.x - player2.padWid:
+                                                self.speed_x *= -1
+                                                break
                         n += 1
                 ##paddle col
  
