@@ -8,7 +8,7 @@ class Player1():
                 self.padWid, self.padHei = 8, 64
                 self.score = 0
                 self.scoreFont = pygame.font.SysFont('ActionIsShaded', 64)
-       
+
         def scoring(self):
                 scoreBlit = self.scoreFont.render(str(self.score), 1, (255, 255, 255))
                 screen.blit(scoreBlit, (32, 16))
@@ -101,7 +101,7 @@ class Ball():
                 elif self.y >= SCR_HEI-self.size:
                         self.speed_y *= -1
  
-                if self.x <= 0:
+                if self.x <= 10:
                         self.__init__()
                         player2.score += 1
                 elif self.x >= SCR_WID-self.size:
