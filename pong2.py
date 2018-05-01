@@ -46,11 +46,13 @@ class Player2():
                         exit()
        
         def movement(self):
-                keys = pygame.key.get_pressed()
-                if keys[pygame.K_UP]:
-                        self.y -= self.speed
-                elif keys[pygame.K_DOWN]:
-                        self.y += self.speed
+#                keys = pygame.key.get_pressed()
+#                if keys[pygame.K_UP]:
+#                        self.y -= self.speed
+#                elif keys[pygame.K_DOWN]:
+#                        self.y += self.speed
+                if ball.y < self.y: self.y -= self.speed
+                elif self.y < ball.y: self.y += self.speed
        
                 if self.y <= 0:
                         self.y = 0
@@ -82,7 +84,7 @@ class Ball():
                         player2.score += 1
                 elif self.x >= SCR_WID-self.size:
                         self.__init__()
-                        self.speed_x = 3
+                        self.speed_x = 5
                         player.score += 1
                 ##wall col
                 #paddle col
@@ -126,6 +128,10 @@ def main(argv):
                             if event.type == pygame.QUIT:
                                     print ("Game exited by user")
                                     exit()
+            pygame.display.flip()
+            #capture
+        
+                                    
             ##process
             #logic
             ball.movement()
@@ -141,7 +147,6 @@ def main(argv):
             player2.scoring()
             ##draw
             #_______
-            pygame.display.flip()
             clock.tick(FPS)
 
 if __name__ == "__main__":

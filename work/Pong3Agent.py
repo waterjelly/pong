@@ -1,5 +1,5 @@
 import pygame
-import pong2 as game
+import pong3 as game
 import cv2
 
 class Agent:
@@ -9,6 +9,7 @@ class Agent:
     def __init__(self):
         self.ball = game.Ball()
         self.player = game.Player()
+        self.player2 = game.Player2()
         self.player2 = game.Player2()
         
     def saveImage(self,image_data):
@@ -35,15 +36,18 @@ class Agent:
             game.ball.movement()
             game.player.movement()
             game.player2.movement()
+            game.player3.movement()
             ##logic
             #draw
             game.ball.draw()
             game.player.draw()
             game.player2.draw()
+            game.player3.draw()
             self.saveImage(self.ball.getSurface())
             
             game.player.scoring()
             game.player2.scoring()
+            game.player3.scoring()
             ##draw
             #_______
             pygame.display.flip()
