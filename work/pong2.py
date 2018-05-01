@@ -1,5 +1,5 @@
 import pygame
- 
+
 class Player():
         def __init__(self):
                 self.x, self.y = 16, SCR_HEI/2
@@ -60,7 +60,7 @@ class Player2():
         def draw(self):
                 pygame.draw.rect(screen, (255, 255, 255), (self.x, self.y, self.padWid, self.padHei))
  
-class Ball():
+class Ball(Player,Player2):
         def __init__(self):
                 self.x, self.y = SCR_WID/2, SCR_HEI/2
                 self.speed_x = -3
@@ -87,6 +87,7 @@ class Ball():
                 ##wall col
                 #paddle col
                 #player
+                print(self.x,self.y)
                 for n in range(-self.size, player.padHei):
                         if 0 > self.speed_x:
                                 if self.y == player.y + n:
@@ -106,6 +107,11 @@ class Ball():
  
         def draw(self):
                 pygame.draw.rect(screen, (255, 255, 255), (self.x, self.y, 8, 8))
+                
+        def getSurface(self):
+            image_data2 = pygame.display.get_surface()
+            
+            return image_data2
  
 SCR_WID, SCR_HEI = 640, 480
 screen = pygame.display.set_mode((SCR_WID, SCR_HEI))
@@ -113,13 +119,15 @@ pygame.display.set_caption("Pong")
 pygame.font.init()
 clock = pygame.time.Clock()
 FPS = 60
- 
+
+
 ball = Ball()
 player = Player()
 player2 = Player2()
 
 
 def main(argv):
+    
     while True:
             #process
             for event in pygame.event.get():
@@ -142,7 +150,7 @@ def main(argv):
             ##draw
             #_______
             pygame.display.flip()
-            clock.tick(FPS)
+            #clock.tick(FPS)
 
 if __name__ == "__main__":
     from sys import argv
