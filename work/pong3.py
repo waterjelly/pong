@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
                         print ("player 1 wins!")
                         exit()
         def reset(self):
-                self.x, self.y = 82, 350
+                self.x, self.y = 88, 350
                 self.position = (self.x, self.y)
                 
        
@@ -148,8 +148,6 @@ class Player3(pygame.sprite.Sprite):
         def reset(self):
                 self.x, self.y = 344, 500
                 self.position = (self.x, self.y)
-                Flag = False
-                Black = (70,40,120)
                 
         def movement(self):
                 keys = pygame.key.get_pressed()
@@ -286,9 +284,14 @@ class Ball(pygame.sprite.Sprite):
                 screen.blit(self.image, self.position)
                 
         def getSurface(self):
-            image_data2 = pygame.display.get_surface()
+            image_data = pygame.surfarray.array3d(pygame.display.get_surface())
             
-            return image_data2
+            return image_data
+        
+        def getScoreSurface(self):
+            image_data = pygame.surfarray.array3d(pygame.display.get_surface())
+            
+            return image_data
 
  
 SCR_WID, SCR_HEI = 764, 764
@@ -297,14 +300,11 @@ pygame.display.set_caption("Pong")
 pygame.font.init()
 clock = pygame.time.Clock()
 FPS = 60
-Flag = False
 
 ball = Ball()
 player = Player()
 player2 = Player2()
 player3 = Player3()
-
-Black =(0,0,0)
 
 
 def main(argv):
@@ -325,7 +325,7 @@ def main(argv):
             player3.movement()
             ##logic
             #draw
-            screen.fill(Black)
+            screen.fill((0,0,0))
             ball.draw()
             player.draw()
             player.scoring()
